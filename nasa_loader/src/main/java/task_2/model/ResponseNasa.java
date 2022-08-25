@@ -1,4 +1,4 @@
-package task_2;
+package task_2.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

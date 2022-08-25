@@ -6,7 +6,8 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-
+import task_2.load_instruments.Downloader;
+import task_2.model.ResponseNasa;
 import java.io.IOException;
 
 public class Main {
@@ -17,8 +18,8 @@ public class Main {
         CloseableHttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet(LINK);
         try (CloseableHttpResponse response = client.execute(request)) {
-            ResponseNasa nasa = MAPPER.readValue(response.getEntity().getContent(), new TypeReference<>() {});
-            Downloader.download(nasa);
+            ResponseNasa responseNasa = MAPPER.readValue(response.getEntity().getContent(), new TypeReference<>() {});
+            Downloader.Download(responseNasa);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
